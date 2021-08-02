@@ -8,17 +8,24 @@ import {
   establishPayer,
   checkProgram,
 } from "./connectionHelpers";
+import axios from "axios";
 
 function App() {
+  const reachToExpress = async (): Promise<void> => {
+    const response = await axios.get("/api/hello");
+    console.log(response);
+  };
+
   const connectToLocalWallet = async (): Promise<void> => {
-    // Establish connection to the cluster
-    await establishConnection();
+    reachToExpress();
+    // // Establish connection to the cluster
+    // await establishConnection();
 
-    // Determine who pays for the fees
-    await establishPayer();
+    // // Determine who pays for the fees
+    // await establishPayer();
 
-    // Check if the program has been deployed
-    await checkProgram();
+    // // Check if the program has been deployed
+    // await checkProgram();
   };
 
   return (
