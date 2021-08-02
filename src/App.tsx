@@ -3,10 +3,22 @@ import "./App.css";
 import { Button, Flex, Box, ThemeProvider } from "theme-ui";
 import { Icon } from "./Icon";
 import theme from "./theme";
+import {
+  establishConnection,
+  establishPayer,
+  checkProgram,
+} from "./connectionHelpers";
 
 function App() {
-  const doSomething = (): void => {
-    console.log("clicked");
+  const connectToLocalWallet = async (): Promise<void> => {
+    // Establish connection to the cluster
+    await establishConnection();
+
+    // Determine who pays for the fees
+    await establishPayer();
+
+    // Check if the program has been deployed
+    await checkProgram();
   };
 
   return (
@@ -21,7 +33,7 @@ function App() {
         >
           <Button
             onClick={() => {
-              doSomething();
+              connectToLocalWallet();
             }}
           >
             <>
